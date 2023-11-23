@@ -1,24 +1,35 @@
-#include <assert.h>
 #include "lab.h"
+#include <assert.h>
 
 int main(void) {
-    try { lab::AminoAcid amino3("UACU"); }
-    catch (const std::length_error& e) {};
-    try { lab::AminoAcid amino4("UAF"); }
-    catch (const std::invalid_argument& e) {};
+  try {
+    lab::AminoAcid amino3("UACU");
+  } catch (const std::length_error &e) {
+  };
 
-    lab::AminoAcid amino1, amino2("UAU");
-    assert(amino2.getData() == "UAU");
+  try {
+    lab::AminoAcid amino4("UAF");
+  } catch (const std::invalid_argument &e) {
+  };
 
-    lab::AminoAcid amino5(amino2);
-    assert(amino5.getData() == amino2.getData());
+  lab::AminoAcid amino1, amino2("UAU");
+  assert(amino2.getData() == "UAU");
 
-    amino5.synthesize("ACG");
-    assert(amino5.getData() == "ACG");
+  lab::AminoAcid amino5(amino2);
+  assert(amino5.getData() == amino2.getData());
 
-    try { amino5.synthesize("AUGU"); }
-    catch (const std::length_error& e) {};
-    try { amino5.synthesize("RCG"); }
-    catch (const std::invalid_argument& e) {};
-    return 0;
+  amino5.synthesize("ACG");
+  assert(amino5.getData() == "ACG");
+
+  try {
+    amino5.synthesize("AUGU");
+  } catch (const std::length_error &e) {
+  };
+
+  try {
+    amino5.synthesize("RCG");
+  } catch (const std::invalid_argument &e) {
+  };
+
+  return 0;
 }
