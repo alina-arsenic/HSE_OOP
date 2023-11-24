@@ -1,5 +1,10 @@
-all:
+all: clean build start
+
+build:
 	g++ *.cpp lab.h
+
+start:
+	./a.out
 
 style:
 	cppcheck --language=c++ *.cpp *.h

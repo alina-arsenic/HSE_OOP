@@ -3,15 +3,17 @@
 
 #include <cstring>
 #include <stdexcept>
+#include <iostream>
 
 namespace lab {
 class AminoAcid {
 public:
-  AminoAcid() : aminoAcid(""){};
+  AminoAcid() : aminoAcid("") {};
   AminoAcid(const char *nucleotides);
   AminoAcid(const AminoAcid &other);
-  ~AminoAcid() { delete &aminoAcid; };
+  ~AminoAcid() {};
 
+  virtual void print() const;
   std::string getData() const;
   void synthesize(const char *nucleotides);
 
@@ -25,8 +27,9 @@ public:
   Protein(const char *nucleotides);
   Protein(const AminoAcid &amino);
   Protein(const Protein &other);
-  ~Protein() { delete &protein; };
+  ~Protein() {};
 
+  virtual void print() const;
   std::string getData() const;
   void synthesize(const char *nucleotides);
   void synthesize(const AminoAcid &amino);

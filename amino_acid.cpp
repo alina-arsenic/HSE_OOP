@@ -16,6 +16,10 @@ lab::AminoAcid::AminoAcid(const AminoAcid &other) {
   aminoAcid = other.aminoAcid;
 }
 
+void lab::AminoAcid::print() const {
+  std::cout << "Amino Acid: " << aminoAcid << "\n";
+}
+
 void lab::AminoAcid::synthesize(const char *nucleotides) {
   if (strlen(nucleotides) != 3)
     throw std::length_error("The nucleotides count must be 3");
@@ -28,4 +32,6 @@ void lab::AminoAcid::synthesize(const char *nucleotides) {
   }
 }
 
-std::string lab::AminoAcid::getData() const { return aminoAcid; }
+std::string lab::AminoAcid::getData() const {
+  return aminoAcid;
+}
