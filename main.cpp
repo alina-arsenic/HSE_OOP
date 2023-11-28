@@ -58,6 +58,58 @@ int main(void) {
   } catch (const std::invalid_argument &e) {
   };
 
+  std::cout << "\n";
+  lab::Protein p4 = p1 + p2;
+  p1.print();
+  std::cout << "+\n";
+  p2.print();
+  std::cout << "=\n";
+  p4.print();
+  assert(p4.getData() == "AAAAAUAUUUUGGGAAAAAAAA");
+
+  std::cout << "\n";
+  p1.synthesize("AUAUAUA");
+  p2.synthesize("GAGAGGUU");
+  p4 = p1 + p2;
+  p1.print();
+  std::cout << "+\n";
+  p2.print();
+  std::cout << "=\n";
+  p4.print();
+  assert(p4.getData() == "AUAUAUAGAGAGGUU");
+
+  std::cout << "\n";
+  p1.synthesize("GUAC");
+  p1.print();
+  p2.synthesize("GUAC");
+  p1 += p2;
+  std::cout << "+\n";
+  p2.print();
+  std::cout << "=\n";
+  p1.print();
+  assert(p1.getData() == "GUAC");
+
+  std::cout << "\n";
+  p1.print();
+  p2.synthesize("AGUAC");
+  p1 += p2;
+  std::cout << "+\n";
+  p2.print();
+  std::cout << "=\n";
+  p1.print();
+  assert(p1.getData() == "GUACAGUAC");
+
+  std::cout << "\n";
+  p1.synthesize("CUCUACCCAGUACAGUACAAAAA");
+  p1.print();
+  p2.synthesize("GUACAGUACAAAAAGUCAC");
+  p1 += p2;
+  std::cout << "+\n";
+  p2.print();
+  std::cout << "=\n";
+  p1.print();
+  assert(p1.getData() == "CUCUACCCAGUACAGUACAAAAAGUCAC");
+
   std::cout << "\nEverything's fine\n";
   return 0;
 }

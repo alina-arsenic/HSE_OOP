@@ -18,6 +18,43 @@ lab::Protein::Protein(const Protein &other) {
     protein = other.protein;
 }
 
+lab::Protein lab::Protein::operator+(const lab::Protein &other) {
+    const char *a = protein.c_str();
+    const char *b = other.protein.c_str();
+    const char *temp = strchr(a, b[0]), *common = NULL;
+    int overlap = 0;
+    while (temp && *temp && common != b) {
+        common = strstr(b, temp);
+        overlap = strlen(temp);
+        temp = strchr(++temp, b[0]);
+    }
+    if (common != b) overlap = 0;
+
+    lab::Protein result(*this);
+    for (int i = 0; i < (other.protein.length()-overlap); i++) {
+        result.protein.push_back(other.protein[overlap+i]);
+    }
+    return result;
+}
+
+lab::Protein& lab::Protein::operator+=(const lab::Protein &other) {
+    const char *a = protein.c_str();
+    const char *b = other.protein.c_str();
+    const char *temp = strchr(a, b[0]), *common = NULL;
+    int overlap = 0;
+    while (temp && *temp && common != b) {
+        common = strstr(b, temp);
+        overlap = strlen(temp);
+        temp = strchr(++temp, b[0]);
+    }
+    if (common != b) overlap = 0;
+
+    for (int i = 0; i < (other.protein.length()-overlap); i++) {
+        protein.push_back(other.protein[overlap+i]);
+    }
+    return *this;
+}
+
 void lab::Protein::print() const {
     std::cout << "Protein: " << protein << "\n";
 }

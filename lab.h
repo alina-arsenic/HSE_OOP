@@ -29,6 +29,9 @@ public:
   Protein(const Protein &other);
   ~Protein() {};
 
+  Protein operator+(const Protein& other);
+  Protein& operator+=(const Protein& other);
+
   virtual void print() const;
   std::string getData() const;
   void synthesize(const char *nucleotides);
